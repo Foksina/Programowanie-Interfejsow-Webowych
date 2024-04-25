@@ -19,4 +19,3 @@ NIEZROBIONE:
 
 + Kliknięcie na nagłówek listy powoduje jej zwinięcie.
 + 0.5 - Pole do dynamicznego wyszukiwania w listach, tzn wpisuję po literce i każdy znak aktualizuje listę. Nie zapomnieć o przełączniku (np. checkbox) case-insensitive
-+ - 1.0 - Niezgodność z zalecanym stylem, np. brak średników, brak "use strict", nieuzasadnione "==", nieuzasadnione let
