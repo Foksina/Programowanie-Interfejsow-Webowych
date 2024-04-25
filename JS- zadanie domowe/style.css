@@ -1,9 +1,8 @@
 body {
-    background-color: #f8f9fa; /* Kolor tła */
+    background-color: #f8f9fa;
     font-family: Arial, sans-serif;
 }
 
-/* Dodaj stylizację dla nagłówka */
 .header {
     background: linear-gradient(to right, #30cfd0, #330867);
     color: white;
@@ -12,18 +11,16 @@ body {
     border-radius: 10px;
 }
 
-/* Dodaj stylizację dla przycisków */
 .btn-custom {
     background-color: #007bff;
     border-color: #007bff;
     color: white;
 }
 
-/* Dodaj formatowanie dla tabeli */
 .task-table {
     margin-top: 20px;
-    max-width: 100%; /* Określenie maksymalnej szerokości tabeli */
-    table-layout: fixed; /* Ustawienie stałej szerokości kolumn */
+    max-width: 100%;
+    table-layout: fixed; 
     word-wrap: break-word;
 }
 
@@ -41,7 +38,7 @@ body {
 
 .task-table .completed {
     text-decoration: line-through;
-    color: #6c757d; /* szary kolor */
+    color: #6c757d;
 }
 
 .container {
@@ -54,10 +51,9 @@ h1 {
     text-align: center;
 }
 
-
 .completed {
     text-decoration: line-through;
-    letter-spacing: 5px; /* Dodajemy większe odstępy między literami */
+    letter-spacing: 5px;
     color: #999;
 }
 
@@ -99,6 +95,5 @@ button {
 }
 
 .collapsed {
-    display: none; /* Ukrywamy zawartość zwiniętej listy */
+    display: none;
 }
-
