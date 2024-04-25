@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Dodaj nowy nagłówek z klasą "header" -->
+        <div class="header mb-4">
+            <h1 class="display-4">To-Do List</h1>
+        </div>
+
+        <!-- Pozostała część zawartości strony -->
+        <div id="lists" class="mb-4">
+            <div class="input-group mb-3">
+                <input type="text" id="newListInput" class="form-control" placeholder="Dodaj nową listę">
+                <div class="input-group-append">
+                    <!-- Zastosuj klasę "btn-custom" do obu przycisków "Dodaj" -->
+                    <button id="addListBtn" class="btn btn-custom" type="button">Dodaj</button>
+                </div>
+            </div>
+        </div>
+
+        <input type="text" id="taskInput" class="form-control mb-3" placeholder="Dodaj nowe zadanie...">
+
+        <div class="input-group mb-3">
+            <select id="listSelect" class="custom-select">
+                <option value="default">Wybierz listę</option>
+                <!-- Tutaj będą opcje list -->
+            </select>
+            <div class="input-group-append">
+                <!-- Zastosuj klasę "btn-custom" do obu przycisków "Dodaj" -->
+                <button id="addTaskBtn" class="btn btn-custom" type="button">Dodaj</button>
+            </div>
+        </div>
+
+        <div class="row" id="listsContainer">
+            <!-- Tutaj będą wyświetlane osobne listy -->
+        </div>
+
+        <!-- Dodaj przycisk do przywracania ostatnio usuniętego zadania -->
+        <div class="mb-3">
+            <button id="restoreButton" class="btn btn-success" disabled>Przywróć ostatnio usunięte zadanie</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <p id="modalQuestion">Czy na pewno chcesz usunąć zadanie o treści:</p>
+            <p id="modalTaskContent"></p>
+            <button id="confirmDelete" class="btn btn-danger">Tak</button>
+            <button id="cancelDelete" class="btn btn-secondary">Nie</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
