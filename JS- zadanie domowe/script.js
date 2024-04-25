@@ -13,7 +13,7 @@ function addList() {
         var listDiv = document.createElement("div");
         listDiv.classList.add("col-sm-4", "mb-3");
         var listTable = document.createElement("table");
-        listTable.classList.add("table", "table-striped", "task-table"); // Dodajemy klasę "task-table" dla tabeli
+        listTable.classList.add("table", "table-striped", "task-table");
         var listBody = document.createElement("tbody");
         listBody.id = newListName + "TaskList";
         listTable.appendChild(listBody);
@@ -21,7 +21,7 @@ function addList() {
         var headerRow = document.createElement("tr");
         var headerCell = document.createElement("th");
         headerCell.textContent = newListName;
-        headerCell.classList.add("text-center", "font-weight-bold", "header-cell"); // Dodajemy klasę "header-cell" dla nagłówka
+        headerCell.classList.add("text-center", "font-weight-bold", "header-cell");
 
         headerCell.colSpan = 2; // Łączymy komórki nagłówka
         headerRow.appendChild(headerCell);
@@ -30,9 +30,8 @@ function addList() {
         listDiv.appendChild(listTable);
         listsContainer.appendChild(listDiv);
         newListInput.value = "";
-        lists.push({name: newListName, tasks: []}); // Dodajemy nową listę do tablicy
+        lists.push({name: newListName, tasks: []});
 
-        // Aktualizujemy listę rozwijaną
         updateListDropdown();
     }
 }
@@ -56,29 +55,29 @@ function addTask() {
     var selectedList = document.getElementById("listSelect").value;
     if (taskContent !== "" && selectedList !== "default") {
         var taskList = document.getElementById(selectedList + "TaskList");
-        var tr = document.createElement("tr"); // Zmiana nazwy z "li" na "tr"
+        var tr = document.createElement("tr"); 
         var taskCell = document.createElement("td");
-        var dateCell = document.createElement("td"); // Dodajemy komórkę na datę
+        var dateCell = document.createElement("td"); 
         taskCell.textContent = taskContent;
-        taskCell.addEventListener("click", function(event) { // Dodajemy funkcję anonimową, która przekazuje indeks listy
+        taskCell.addEventListener("click", function(event) { 
             var listIndex = lists.findIndex(list => list.name === selectedList);
-            toggleTask(event, listIndex); // Przekazujemy indeks listy
+            toggleTask(event, listIndex); 
         });
         tr.appendChild(taskCell);
-        tr.appendChild(dateCell); // Dodajemy komórkę z datą do wiersza
+        tr.appendChild(dateCell);
 
         // Dodajemy przycisk X do usuwania zadania
         var deleteTaskBtn = document.createElement("button");
         deleteTaskBtn.innerHTML = "&times;";
         deleteTaskBtn.classList.add("close", "delete-task-btn");
-        deleteTaskBtn.addEventListener("click", deleteTask); // Dodajemy obsługę kliknięcia na przycisku X
+        deleteTaskBtn.addEventListener("click", deleteTask); 
         tr.appendChild(deleteTaskBtn);
 
-        taskList.appendChild(tr); // Zmiana "li" na "tr"
+        taskList.appendChild(tr); 
         taskInput.value = "";
         // Dodajemy zadanie do odpowiedniej listy
         var listIndex = lists.findIndex(list => list.name === selectedList);
-        lists[listIndex].tasks.push({content: taskContent, completed: false, completedDate: null}); // Dodajemy pole completedDate do obiektu zadania
+        lists[listIndex].tasks.push({content: taskContent, completed: false, completedDate: null});
     } else {
         alert("Wybierz listę i wpisz treść zadania!");
     }
@@ -92,55 +91,54 @@ function toggleTask(event, listIndex) {
     var selectedList = lists[listIndex].name;
     var taskIndex = lists[listIndex].tasks.findIndex(task => task.content === taskContent);
     var task = lists[listIndex].tasks[taskIndex];
-    if (task) { // Sprawdzamy, czy task istnieje
-        task.completed = !task.completed; // Zaznaczamy/zdejmujemy zaznaczenie
+    if (task) { 
+        task.completed = !task.completed; 
         if (task.completed) {
-            // Ustawiamy datę wykonania zadania na bieżącą datę
             task.completedDate = new Date().toLocaleString();
         } else {
-            task.completedDate = null; // Resetujemy datę wykonania zadania
+            task.completedDate = null; 
         }
-        updateTaskDate(event.target.nextElementSibling, task.completedDate); // Aktualizujemy wyświetlaną datę
+        updateTaskDate(event.target.nextElementSibling, task.completedDate);
     } else {
-        console.error("Task not found:", taskContent); // Wyświetlamy błąd w konsoli, jeśli task nie został znaleziony
+        console.error("Task not found:", taskContent); 
     }
 }
 
 // Funkcja do aktualizacji wyświetlanej daty w komórce
 function updateTaskDate(dateCell, completedDate) {
-    dateCell.textContent = completedDate || ""; // Ustawiamy datę, jeśli istnieje, w przeciwnym wypadku pusty ciąg znaków
+    dateCell.textContent = completedDate || "";
 }
 
 // Funkcja do usuwania zadania
 function deleteTask(event) {
     var taskItem = event.target.parentElement;
-    var taskContent = taskItem.firstChild.textContent; // Pobieramy treść zadania
+    var taskContent = taskItem.firstChild.textContent; 
     var modalTaskContent = document.getElementById("modalTaskContent");
-    modalTaskContent.textContent = taskContent; // Aktualizujemy tekst w modalu
+    modalTaskContent.textContent = taskContent; 
 
     var modal = document.getElementById("myModal");
-    modal.style.display = "block"; // Wyświetlamy modal
+    modal.style.display = "block";
 
     var confirmDeleteBtn = document.getElementById("confirmDelete");
     confirmDeleteBtn.onclick = function() { // Obsługa przycisku Tak
-        var listName = taskItem.parentElement.id.replace("TaskList", ""); // Pobieramy nazwę listy z ID
+        var listName = taskItem.parentElement.id.replace("TaskList", ""); 
         var listIndex = lists.findIndex(list => list.name === listName);
         var taskIndex = lists[listIndex].tasks.findIndex(task => task.content === taskContent);
-        var deletedTask = lists[listIndex].tasks.splice(taskIndex, 1)[0]; // Usuwamy zadanie z listy zadań i zapisujemy je w zmiennej
+        var deletedTask = lists[listIndex].tasks.splice(taskIndex, 1)[0]; 
         recentlyDeletedTask = {
             content: deletedTask.content,
             completed: deletedTask.completed,
             completedDate: deletedTask.completedDate,
-            listName: listName // Poprawiamy przypisanie nazwy listy
+            listName: listName 
         };
-        taskItem.remove(); // Usuwamy zadanie z listy na stronie
-        modal.style.display = "none"; // Chwylimy modal
+        taskItem.remove(); 
+        modal.style.display = "none"; 
         updateRestoreButtonState(); // Aktualizujemy stan przycisku "Przywróć ostatnio usunięte zadanie"
     }
 
     var cancelDeleteBtn = document.getElementById("cancelDelete");
     cancelDeleteBtn.onclick = function() { // Obsługa przycisku Nie
-        modal.style.display = "none"; // Chwylimy modal
+        modal.style.display = "none"; 
     }
 }
 
@@ -182,7 +180,7 @@ function restoreDeletedTask() {
 // Funkcja do aktualizowania stanu przycisku "Przywróć ostatnio usunięte zadanie"
 function updateRestoreButtonState() {
     var restoreButton = document.getElementById("restoreButton");
-    restoreButton.disabled = !recentlyDeletedTask; // Aktywujemy przycisk, jeśli istnieje ostatnio usunięte zadanie
+    restoreButton.disabled = !recentlyDeletedTask; 
 }
 
 window.onload = function() {
@@ -193,23 +191,23 @@ window.onload = function() {
     addListBtn.addEventListener("click", addList);
 
     var confirmDeleteBtn = document.getElementById("confirmDelete");
-    confirmDeleteBtn.addEventListener("click", function() { // Obsługa przycisku "Tak"
+    confirmDeleteBtn.addEventListener("click", function() { 
         var listSelect = document.getElementById("listSelect");
         var selectedList = listSelect.value;
         var listIndex = lists.findIndex(list => list.name === selectedList);
         var taskIndex = lists[listIndex].tasks.findIndex(task => task.content === taskContent);
-        lists[listIndex].tasks.splice(taskIndex, 1); // Usuwamy zadanie z listy zadań
-        taskItem.remove(); // Usuwamy zadanie z listy na stronie
+        lists[listIndex].tasks.splice(taskIndex, 1); 
+        taskItem.remove(); 
         modal.style.display = "none"; 
     });
 
     var cancelDeleteBtn = document.getElementById("cancelDelete");
-    cancelDeleteBtn.addEventListener("click", function() { // Obsługa przycisku "Nie"
+    cancelDeleteBtn.addEventListener("click", function() { 
         var modal = document.getElementById("myModal");
         modal.style.display = "none";
     });
 
     var restoreButton = document.getElementById("restoreButton");
-    restoreButton.addEventListener("click", restoreDeletedTask); // Dodajemy obsługę kliknięcia na przycisku przywracania
-    updateRestoreButtonState(); // Aktualizujemy stan przycisku przy ładowaniu strony
+    restoreButton.addEventListener("click", restoreDeletedTask); 
+    updateRestoreButtonState(); 
 }
