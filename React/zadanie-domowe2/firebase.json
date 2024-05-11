@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "zadanie-domowe-kf",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
