@@ -1,10 +1,20 @@
-import hotelData from '../data';
+import { fetchHotelById } from '../Data/hotelService';
 import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+
 
 function HotelDetails() {
   const { id } = useParams();
   const hotelId = parseInt(id);
-  const hotel = hotelData.find(h => h.id === hotelId);
+  const [hotel, setHotel] = useState(null);
+
+  useEffect(() => {
+    const getHotel = async () => {
+      const fetchedHotel = await fetchHotelById(hotelId);
+      setHotel(fetchedHotel);
+    };
+    getHotel();
+  }, [hotelId]);
 
   if (!hotel) {
     return <div>Hotel not found</div>;

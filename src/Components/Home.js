@@ -1,6 +1,17 @@
-import hotelData from '../data.js';
+import { fetchHotels } from '../Data/hotelService';
+import React, { useState, useEffect } from 'react';
+
 
 function Home() {
+  const [hotels, setHotels] = useState([]);
+
+  useEffect(() => {
+    const getHotels = async () => {
+      const fetchedHotels = await fetchHotels();
+      setHotels(fetchedHotels);
+    };
+    getHotels();
+  }, []);
 
     return (
       <>
@@ -29,7 +40,7 @@ function Home() {
           <p className="title-middle">Explore the hotels</p>
           <input className="searchbar" placeholder="Search by hotel name, place etc." />
           <section className="grid hotel-cards">
-            {hotelData.map(hotel => (
+            {hotels.map(hotel => (
               <article key={hotel.id} className="hotel-card">
                 <div className="card-image">
                   <p className="chip">{hotel.city}</p>
