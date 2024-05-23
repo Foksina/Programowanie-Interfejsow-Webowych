@@ -1,6 +1,25 @@
 # Firebase
 Link do firebase'a -> https://first-react-app-f76cd.web.app/
 
+# Lab 3 - zrobione
+Przepisujemy naszą stronę z Lab 1 na Reacta.
+
+Przenieść dane o hotelach do jednego pliku, jako zmienna, będaca array'iem (demo). Komponenty czytają z niej.
+
+3.0 - Strona przeglądanie hotelów ładuje się jako komponent Reactowy
+
++1.0 - Mamy React-Router-Dom, który, po kliknięciu na dany hotel, przenosi na stronę danego hotelu UWAGA: React-router-dom będzie i tak konieczny w kolejnych zadaniach
+
+Dokonać tzw. deploy'u na Firebase
+
+# Lab 4 - zrobione
++1.0 Logowanie przez Google
+
++1.0 Logowanie i rejestracja mailem i hasłem
+
++1.5 Dane hoteli (listowanie wszystkich i przeglądanie jednego, konkretnego) są zaciągane z Firestore'a
+
++0.5 - możemy sortować ogłoszenia po wybranym atrybucie
 
 # Getting Started with Create React App
 
