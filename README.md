@@ -1,15 +1,15 @@
 # Programowanie-Interfejsow-Webowych
 Zadania realizowane w ramach kursu Programowanie Interfejsów Webowych
 
-## LAB1 - TranquilTravels-PIWo2024
+* LAB1 - TranquilTravels-PIWo2024
 
-## LAB2 - JS-zadanie domowe
+* LAB2 - JS-zadanie domowe
 
-## LAB3 - my-app
+* LAB3 - my-app
 
-## LAB4 - branch master (jakoś źle dodałam :C )
+* LAB4 - branch master (jakoś źle dodałam :C )
 
-## LAB 5 - in progress...
+* LAB 5 - in progress...
 
 
 Autor: Kinga Foksińska, nr 255591
