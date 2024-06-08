@@ -26,7 +26,9 @@ Dokonać tzw. deploy'u na Firebase
 
 +2.0 - Mamy koszyk/ulubione, który jest w localStorage (reducer zalecany)
 
-+2.0 - Widok, pozwalajacy na chat z innym użytkownikiem. Myślę, że widok jak WhatsApp web.
++2.0 - Widok, pozwalajacy na chat z innym użytkownikiem. Myślę, że widok jak WhatsApp web. 
+
+(disclaimer -> trzeba być zalogowanym, żeby móc wysyłać wiadomość)
 
 +0.5 - Mamy podpowiadanie alla debouncing lub throttling jak chcemy wyszukać innego użytkownika
 
