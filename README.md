@@ -9,7 +9,7 @@ Zadania realizowane w ramach kursu Programowanie Interfejsów Webowych
 
 * LAB4 - branch master (jakoś źle dodałam :C )
 
-* LAB 5 - in progress...
+* LAB 5 - branch master
 
 
 Autor: Kinga Foksińska, nr 255591
