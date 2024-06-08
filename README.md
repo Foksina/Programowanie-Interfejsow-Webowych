@@ -21,6 +21,15 @@ Dokonać tzw. deploy'u na Firebase
 
 +0.5 - możemy sortować ogłoszenia po wybranym atrybucie
 
+# Lab 5 - zrobione
++1.0 - Wchodząc w ogłoszenie mogę wysłać maila do właściciela. Wpisywanie nie re-renderuje komponentu
+
++2.0 - Mamy koszyk/ulubione, który jest w localStorage (reducer zalecany)
+
++2.0 - Widok, pozwalajacy na chat z innym użytkownikiem. Myślę, że widok jak WhatsApp web.
+
++0.5 - Mamy podpowiadanie alla debouncing lub throttling jak chcemy wyszukać innego użytkownika
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
