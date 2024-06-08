@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchHotels } from '../Data/hotelService'; 
+import { useCart } from '../Data/CartContext';
 
 function BrowseHotels() {
   const [hotels, setHotels] = useState([]);
   const [sortAttribute, setSortAttribute] = useState('name'); // Domyślnie sortowanie po nazwie
+  const { state, dispatch } = useCart();
 
   useEffect(() => {
     const getHotels = async () => {
@@ -14,6 +16,16 @@ function BrowseHotels() {
     };
     getHotels();
   }, []);
+
+  const toggleFavorite = (hotel) => {
+    if (state.favorites.some(fav => fav.id === hotel.id)) {
+      dispatch({ type: 'REMOVE_FROM_FAVORITES', payload: hotel.id });
+    } else {
+      dispatch({ type: 'ADD_TO_FAVORITES', payload: hotel });
+    }
+  };
+
+  const isFavorite = (hotelId) => state.favorites.some(hotel => hotel.id === hotelId);
 
   // Funkcja do sortowania hoteli
   const sortHotels = (hotels, attribute) => {
@@ -57,7 +69,8 @@ function BrowseHotels() {
             <article key={hotel.id} className="hotel-card">
               <div className="card-image">
                 <p className="chip">{hotel.city}</p>
-                <p className="heart">❤</p>
+                <p className="heart" onClick={() => toggleFavorite(hotel)}>
+                  {isFavorite(hotel.id) ? '❤' : '♡'}</p>
               </div>
               <p className="text-middle">{hotel.name}</p>
               <p className="text-small">{hotel.description}</p>

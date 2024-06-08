@@ -1,9 +1,10 @@
 import { fetchHotels } from '../Data/hotelService';
 import React, { useState, useEffect } from 'react';
-
+import { useCart } from '../Data/CartContext';
 
 function Home() {
   const [hotels, setHotels] = useState([]);
+  const { state } = useCart();
 
   useEffect(() => {
     const getHotels = async () => {
@@ -40,7 +41,7 @@ function Home() {
           <p className="title-middle">Explore the hotels</p>
           <input className="searchbar" placeholder="Search by hotel name, place etc." />
           <section className="grid hotel-cards">
-            {hotels.map(hotel => (
+            {state.favorites.map(hotel => (
               <article key={hotel.id} className="hotel-card">
                 <div className="card-image">
                   <p className="chip">{hotel.city}</p>

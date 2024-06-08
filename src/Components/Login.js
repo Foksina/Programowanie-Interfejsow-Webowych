@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { auth, googleProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from '../Data/init';
+import { db } from '../Data/init'; 
+import { doc, setDoc, getDoc } from 'firebase/firestore'; 
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -16,9 +18,22 @@ function Login() {
         return () => unsubscribe();
     }, []);
 
+    const addUserToFirestore = async (user) => {
+      const userRef = doc(db, 'users', user.uid);
+      const docSnap = await getDoc(userRef);
+  
+      if (!docSnap.exists()) {
+        await setDoc(userRef, {
+          email: user.email,
+          uid: user.uid,
+        });
+      }
+    };
+
     const handleGoogleLogin = async () => {
       try {
-        await signInWithPopup(auth, googleProvider);
+        const result = await signInWithPopup(auth, googleProvider);
+        await addUserToFirestore(result.user);
       } catch (error) {
         console.error("Google login error: ", error);
         setError('Google login error');
@@ -27,7 +42,8 @@ function Login() {
 
     const handleEmailLogin = async () => {
         try {
-          await signInWithEmailAndPassword(auth, email, password);
+          const result = await signInWithEmailAndPassword(auth, email, password);
+          await addUserToFirestore(result.user);
         } catch (error) {
           console.error("Email login error: ", error);
           setError('Email login error');
@@ -36,7 +52,8 @@ function Login() {
 
     const handleEmailRegister = async () => {
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
+          const result = await createUserWithEmailAndPassword(auth, email, password);
+          await addUserToFirestore(result.user);
         } catch (error) {
             console.error("Email registration error: ", error);
             setError('Email registration error');

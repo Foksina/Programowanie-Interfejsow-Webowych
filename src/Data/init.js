@@ -15,6 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+const db = getFirestore(app);
 
 const signInWithEmailPassword = async (email, password) => {
     try {
@@ -27,3 +28,4 @@ const signInWithEmailPassword = async (email, password) => {
 
 export { auth, googleProvider, signInWithPopup, signOut, onAuthStateChanged, signInWithEmailPassword, signInWithEmailAndPassword, createUserWithEmailAndPassword };
 export const firestore = getFirestore(app);
+export {db};
